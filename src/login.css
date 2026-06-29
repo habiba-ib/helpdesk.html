@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  color: #2563eb;
+  margin-bottom: 40px;
+  font-size: 36px;
+}
+
+.login-card {
+  width: 450px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  background-color: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.form-group {
+  padding: 20px 25px 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #e5e7eb;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  outline: 2px solid #2563eb;
+}
+
+.login-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.signup-text {
+  text-align: center;
+  padding-bottom: 25px;
+  font-size: 20px;
+}
+
+.signup-text span {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 600;
+}

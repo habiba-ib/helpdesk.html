@@ -1,0 +1,38 @@
+export const INITIAL_TICKETS = [
+  {
+    id: "#1001",
+    subject: "Login page not loading",
+    priority: "High",
+    status: "Open",
+    assign: "Ahmed",
+    date: "Jun 20",
+    description: "The login page keeps loading and does not open.",
+  },
+  {
+    id: "#1002",
+    subject: "Password reset email not sending",
+    priority: "High",
+    status: "In Progress",
+    assign: "Sara",
+    date: "Jun 21",
+    description: "The user does not receive the password reset email.",
+  },
+  {
+    id: "#1003",
+    subject: "Dashboard stats wrong",
+    priority: "Medium",
+    status: "In Progress",
+    assign: "Mohamed",
+    date: "Jun 22",
+    description: "Dashboard numbers are not correct.",
+  },
+  {
+    id: "#1004",
+    subject: "Upload button not working",
+    priority: "Low",
+    status: "Resolved",
+    assign: "Habiba",
+    date: "Jun 22",
+    description: "The upload button does not respond.",
+  },
+];
