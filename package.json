@@ -1,6 +1,6 @@
 {
   "name": "helpdesk",
-  "homepage": "https://habiba-ib.github.io/HelpDesk",
+  "homepage": "https://habiba-ib.github.io/helpdesk",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
      "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^19.2.7",
