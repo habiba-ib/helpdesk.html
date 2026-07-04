@@ -8,14 +8,15 @@ import AdminDashboard from "./AdminDashboard";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/notifications" element={<Notifications />} />
-      <Route path="/admin" element={<AdminDashboard />} />
-    </Routes>
+<Routes>
+  <Route path="/" element={<Login />} />
+  <Route path="/helpdesk" element={<Login />} />
+  <Route path="/register" element={<Register />} />
+  <Route path="/dashboard" element={<Dashboard />} />
+  <Route path="/profile" element={<Profile />} />
+  <Route path="/notifications" element={<Notifications />} />
+  <Route path="/admin" element={<AdminDashboard />} />
+</Routes>
   );
 }
 

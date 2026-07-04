@@ -5,17 +5,7 @@ import StatsCards from "./StatsCards";
 import TicketTable from "./TicketTable";
 import NewTicketModal from "./NewTicketModal";
 import "./Dashboard.css";
-
-const INITIAL_TICKETS = [
-  { id: "#1001", subject: "Login page not loading", priority: "High", status: "Open", assign: "Ahmed", date: "Jun 20" },
-  { id: "#1002", subject: "Password reset email not sending", priority: "High", status: "In Progress", assign: "Sara", date: "Jun 21" },
-  { id: "#1003", subject: "Dashboard stats wrong", priority: "Medium", status: "In Progress", assign: "Mohamed", date: "Jun 22" },
-  { id: "#1004", subject: "Upload button not working", priority: "Low", status: "Resolved", assign: "Habiba", date: "Jun 22" },
-  { id: "#1005", subject: "User cannot update profile", priority: "Medium", status: "Open", assign: "Ahmed", date: "Jun 23" },
-  { id: "#1006", subject: "Email notifications delayed", priority: "Low", status: "In Progress", assign: "Sara", date: "Jun 23" },
-  { id: "#1007", subject: "Search results empty", priority: "Medium", status: "Open", assign: "Mohamed", date: "Jun 24" },
-  { id: "#1008", subject: "Mobile layout broken", priority: "High", status: "In Progress", assign: "Habiba", date: "Jun 24" },
-];
+import { INITIAL_TICKETS } from "./ticketData";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -36,20 +26,22 @@ function Dashboard() {
   const [editTicket, setEditTicket] = useState(null);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("user"));
-    if (!stored) navigate("/");
+const stored = JSON.parse(localStorage.getItem("currentUser"));    if (!stored) navigate("/");
     else setUser(stored);
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    navigate("/");
-  };
-
+const handleLogout = () => {
+  localStorage.removeItem("currentUser");
+  navigate("/");
+};
   // ➕ Add Ticket
   const handleAddTicket = (newTicket) => {
-    const id = "#" + (1000 + tickets.length + 1);
-    const today = new Date().toLocaleDateString("en-US", {
+const maxId = tickets.reduce((max, ticket) => {
+  const number = Number(ticket.id.replace("#", ""));
+  return number > max ? number : max;
+}, 1000);
+
+const id = `#${maxId + 1}`;    const today = new Date().toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
     });
@@ -155,7 +147,6 @@ function Dashboard() {
 
         <StatsCards stats={stats} />
 
-        {/* 👇 مهم: بنبعت الأكشنز للـ Table */}
         <TicketTable
           tickets={filtered}
           filter={filter}
@@ -166,7 +157,6 @@ function Dashboard() {
         />
       </main>
 
-      {/* ➕ New Ticket */}
       {showModal && (
         <NewTicketModal
           onClose={() => setShowModal(false)}
@@ -174,20 +164,7 @@ function Dashboard() {
         />
       )}
 
-      {/* 👁️ VIEW MODAL */}
-      {viewTicket && (
-        <div className="modal">
-          <h2>{viewTicket.subject}</h2>
-          <p><b>Priority:</b> {viewTicket.priority}</p>
-          <p><b>Status:</b> {viewTicket.status}</p>
-          <p><b>Assigned:</b> {viewTicket.assign}</p>
-          <p><b>Date:</b> {viewTicket.date}</p>
 
-          <button onClick={() => setViewTicket(null)}>Close</button>
-        </div>
-      )}
-
-      {/* ✏️ EDIT MODAL */}
  {viewTicket && (
   <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && setViewTicket(null)}>
     <div className="modal">
@@ -250,6 +227,7 @@ function Dashboard() {
             <option>Open</option>
             <option>In Progress</option>
             <option>Resolved</option>
+            <option>Pending</option>
           </select>
         </div>
       </div>

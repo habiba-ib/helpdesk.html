@@ -24,7 +24,14 @@ function Login() {
   }
 
   if (email === storedUser.email && password === storedUser.password) {
+
+    // حفظ المستخدم الحالي
+    localStorage.setItem("currentUser", JSON.stringify(storedUser));
+
     navigate("/dashboard");
+
+
+
   } else {
     alert("Invalid Email or Password");
   }

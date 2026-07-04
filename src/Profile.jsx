@@ -16,8 +16,7 @@ function Profile() {
   });
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("user"));
-
+const stored = JSON.parse(localStorage.getItem("currentUser"));
     if (!stored) {
       navigate("/");
       return;
@@ -34,7 +33,7 @@ function Profile() {
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+localStorage.removeItem("currentUser");
     navigate("/");
   };
 
@@ -56,8 +55,8 @@ function Profile() {
       password: formData.newPassword || formData.password,
     };
 
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-    setUser(updatedUser);
+localStorage.setItem("user", JSON.stringify(updatedUser));
+localStorage.setItem("currentUser", JSON.stringify(updatedUser));    setUser(updatedUser);
     setFormData({
       ...formData,
       password: updatedUser.password,

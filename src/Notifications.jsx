@@ -32,7 +32,7 @@ function Notifications() {
   ];
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("user"));
+    const stored = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!stored) {
       navigate("/");
@@ -43,7 +43,7 @@ function Notifications() {
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+   localStorage.removeItem("currentUser");
     navigate("/");
   };
 

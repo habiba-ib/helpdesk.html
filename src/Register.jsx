@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 function Register() {
@@ -8,29 +8,35 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-const handleRegister = (e) => {
-  e.preventDefault();
+  const navigate = useNavigate();
 
-  if (!fullName || !email || !password || !confirmPassword) {
-    alert("Please fill all fields");
-    return;
-  }
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
+    if (!fullName || !email || !password || !confirmPassword) {
+      alert("Please fill all fields");
+      return;
+    }
 
-  const user = {
-    fullName,
-    email,
-    password,
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    const user = {
+      fullName,
+      email,
+      password,
+    };
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users.push(user);
+
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Registration Successful");
+    navigate("/");
   };
-
-  localStorage.setItem("user", JSON.stringify(user));
-
-  alert("Registration Successful");
-};
 
   return (
     <div className="login-container">
@@ -44,7 +50,6 @@ const handleRegister = (e) => {
         <form onSubmit={handleRegister}>
           <div className="form-group">
             <label>Full Name</label>
-
             <input
               type="text"
               placeholder="Enter your name"
@@ -55,7 +60,6 @@ const handleRegister = (e) => {
 
           <div className="form-group">
             <label>Email</label>
-
             <input
               type="email"
               placeholder="Enter your email"
@@ -66,7 +70,6 @@ const handleRegister = (e) => {
 
           <div className="form-group">
             <label>Password</label>
-
             <input
               type="password"
               placeholder="Enter your password"
@@ -77,7 +80,6 @@ const handleRegister = (e) => {
 
           <div className="form-group">
             <label>Confirm Password</label>
-
             <input
               type="password"
               placeholder="Confirm your password"
@@ -91,10 +93,9 @@ const handleRegister = (e) => {
           </button>
         </form>
 
-       <p className="signup-text">
-  Already have an account?{" "}
-  <Link to="/">Login</Link>
-</p>
+        <p className="signup-text">
+          Already have an account? <Link to="/">Login</Link>
+        </p>
       </div>
     </div>
   );

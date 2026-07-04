@@ -76,14 +76,13 @@
   background-color: #1d4ed8;
 }
 
-.signup-text {
-  text-align: center;
-  padding-bottom: 25px;
-  font-size: 20px;
-}
-
-.signup-text span {
+.signup-text a {
   color: #2563eb;
   cursor: pointer;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
 }

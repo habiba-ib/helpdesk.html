@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 function Sidebar({ user, onLogout, stats, activeFilter, onFilterChange }) {
+  const navigate = useNavigate();
+
   const initials = user?.fullName
-    ? user.fullName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    ? user.fullName
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2)
     : "U";
 
   const navItems = [
@@ -30,8 +39,11 @@ function Sidebar({ user, onLogout, stats, activeFilter, onFilterChange }) {
           >
             <span className="nav-icon">{item.icon}</span>
             <span>{item.label}</span>
+
             {item.badge !== undefined && (
-              <span className={`nav-badge ${item.badgeClass || ""}`}>{item.badge}</span>
+              <span className={`nav-badge ${item.badgeClass || ""}`}>
+                {item.badge}
+              </span>
             )}
           </button>
         ))}
@@ -40,23 +52,33 @@ function Sidebar({ user, onLogout, stats, activeFilter, onFilterChange }) {
       <div className="sidebar-bottom">
         <div className="sidebar-user">
           <div className="user-avatar">{initials}</div>
+
           <div className="user-info">
             <span className="user-name">{user?.fullName || "User"}</span>
             <span className="user-email">{user?.email || ""}</span>
           </div>
         </div>
-<button className="logout-btn" onClick={() => window.location.href = "/admin"}>
-  Admin Dashboard
-</button>
 
-<button className="logout-btn" onClick={() => window.location.href = "/profile"}>
-  Profile
-</button>
+        <button
+          className="logout-btn"
+          onClick={() => navigate("/admin")}
+        >
+          Admin Dashboard
+        </button>
 
-<button className="logout-btn" onClick={() => window.location.href = "/notifications"}>
-  Notifications
-</button>
+        <button
+          className="logout-btn"
+          onClick={() => navigate("/profile")}
+        >
+          Profile
+        </button>
 
+        <button
+          className="logout-btn"
+          onClick={() => navigate("/notifications")}
+        >
+          Notifications
+        </button>
 
         <button className="logout-btn" onClick={onLogout}>
           Logout

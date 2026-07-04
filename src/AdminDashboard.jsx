@@ -12,8 +12,7 @@ function AdminDashboard() {
   const [reply, setReply] = useState("");
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("user"));
-
+const stored = JSON.parse(localStorage.getItem("currentUser"));
     if (!stored) {
       navigate("/");
       return;
@@ -26,7 +25,7 @@ function AdminDashboard() {
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+localStorage.removeItem("currentUser");
     navigate("/");
   };
 
